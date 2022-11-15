@@ -2,7 +2,7 @@ use serde::Deserialize;
 use serde::Serialize;
 use serde_json::Value;
 
-#[derive(Default, Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Root {
     pub success: bool,
@@ -13,7 +13,7 @@ pub struct Root {
     pub auctions: Vec<Auction>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Auction {
     pub uuid: String,
@@ -35,8 +35,8 @@ pub struct Auction {
     #[serde(rename = "item_bytes")]
     pub item_bytes: String,
     pub claimed: bool,
-    #[serde(rename = "claimed_bidders")]
-    pub claimed_bidders: Vec<Value>,
+    //#[serde(rename = "claimed_bidders")]
+    //pub claimed_bidders: Vec<Value>,
     #[serde(rename = "highest_bid_amount")]
     pub highest_bid_amount: i64,
     #[serde(rename = "last_updated")]
@@ -47,7 +47,7 @@ pub struct Auction {
     pub item_uuid: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Bid {
     #[serde(rename = "auction_id")]
