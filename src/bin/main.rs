@@ -65,5 +65,3 @@ fn has_unique_elements<T>(iter: T) -> bool
     let mut uniq = HashSet::new();
     iter.into_iter().all(move |x| uniq.insert(x))
 }
-
-// ur  mmo - Thayne Tubbs

@@ -2,13 +2,15 @@ FROM rust:1.65.0 as builder
 
 WORKDIR /usr/src/AsyncWeb
 
-COPY . .
+COPY src ./src
+COPY Cargo.toml .
 
 RUN cargo install --path .
 
-FROM debian:buster-slim as runner
-RUN apt-get install -y extra-runtime-dependencies  \
+FROM debian:bullseye-slim as runner
 RUN apt-get update
 RUN apt-get upgrade
+RUN apt-get -y install ca-certificates
+RUN apt-get -y install libssl-dev
 COPY --from=builder /usr/local/cargo/bin/AsyncWeb /usr/local/bin/AsyncWeb
 CMD ["AsyncWeb"]
